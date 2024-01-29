@@ -18,8 +18,8 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="container mt-5">
+      <h2 className="text-left">Login</h2>
       <LoginForm onLogin={handleLogin} />
     </div>
   );

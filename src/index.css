@@ -8,11 +8,26 @@
   src: url("/public/fonts/Eczar%20Regular.ttf") format("truetype");
 }
 
+body,
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: "Cardo", serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#main-content {
+  min-height: 75vh; /* Viewport Height */
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
 }
 
 h1,

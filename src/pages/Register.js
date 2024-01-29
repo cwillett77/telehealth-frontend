@@ -15,8 +15,8 @@ function Register() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className="container mt-5">
+      <h2 className="text-left">Register</h2>
       <RegisterForm onRegister={handleRegister} />
     </div>
   );
