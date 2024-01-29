@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 function LoginForm({ onLogin }) {
   const [credentials, setCredentials] = useState({
@@ -10,9 +11,18 @@ function LoginForm({ onLogin }) {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onLogin(credentials);
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/accounts/login/",
+        credentials
+      );
+      localStorage.setItem("token", response.data.token);
+      // Redirect or do something upon successful login
+    } catch (error) {
+      console.error("Login failed!", error);
+    }
   };
 
   return (

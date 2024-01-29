@@ -5,8 +5,9 @@ function RegisterForm({ onRegister }) {
     username: "",
     password: "",
     email: "",
-    firstName: "",
-    lastName: "",
+    userType: "patient",
+    specialization: "",
+    credentials: "",
   });
 
   const handleChange = (e) => {
@@ -16,6 +17,10 @@ function RegisterForm({ onRegister }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     onRegister(credentials);
+  };
+
+  const handleUserTypeChange = (event) => {
+    setCredentials({ ...credentials, userType: event.target.value });
   };
 
   return (
@@ -66,6 +71,58 @@ function RegisterForm({ onRegister }) {
           placeholder="Last Name"
           required
         />
+
+        <div
+          className="btn-group mb-2"
+          role="group"
+          aria-label="Basic radio toggle button group"
+        >
+          <input
+            type="radio"
+            id="patient"
+            name="userType"
+            value="patient"
+            className="btn-check"
+            checked={credentials.userType === "patient"}
+            onChange={handleUserTypeChange}
+            autoComplete="off"
+          />
+          <label className="btn btn-outline-primary" htmlFor="patient">
+            Patient
+          </label>
+
+          <input
+            type="radio"
+            id="doctor"
+            name="userType"
+            value="doctor"
+            className="btn-check"
+            checked={credentials.userType === "doctor"}
+            onChange={handleUserTypeChange}
+            autoComplete="off"
+          />
+          <label className="btn btn-outline-primary" htmlFor="doctor">
+            Doctor
+          </label>
+        </div>
+
+        {credentials.userType === "doctor" && (
+          <>
+            <textarea
+              name="specialization"
+              placeholder="Specialization"
+              value={credentials.specialization}
+              onChange={handleChange}
+            />
+
+            <textarea
+              name="credentials"
+              placeholder="Credentials"
+              value={credentials.credentials}
+              onChange={handleChange}
+            />
+          </>
+        )}
         <button type="submit" className="btn btn-primary w-100">
           Register
         </button>
