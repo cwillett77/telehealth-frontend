@@ -10,7 +10,7 @@ function Login() {
     loginUser(credentials)
       .then((response) => {
         localStorage.setItem("token", response.data.token);
-        navigate.push("/dashboard");
+        navigate("/dashboard");
       })
       .catch((error) => {
         console.log("Login error: ", error);

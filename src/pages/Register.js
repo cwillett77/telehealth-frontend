@@ -11,7 +11,7 @@ function Register() {
       const response = await registerUser(credentials);
       if (response.status === 201) {
         localStorage.setItem("token", response.data.token); // Save token to local storage
-        navigate.push("/dashboard"); // Redirect to dashboard or any other page
+        navigate("/dashboard"); // Redirect to dashboard or any other page
       } else if (response.status === 400) {
         console.error(
           "Bad Request, please check your payload for valid key/value pairs."
