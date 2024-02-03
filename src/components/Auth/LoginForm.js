@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
-function LoginForm({ onLogin }) {
+function LoginForm() {
+  const { login } = useAuth();
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  let navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -18,16 +23,21 @@ function LoginForm({ onLogin }) {
         "http://localhost:8000/api/accounts/login/",
         credentials
       );
-      localStorage.setItem("token", response.data.token);
-      // Redirect or do something upon successful login
+      login(response.data, navigate);
     } catch (error) {
       console.error("Login failed!", error);
+      setError("Login failed. Please check your credentials.");
     }
   };
 
   return (
     <div className="container mt-5">
       <form onSubmit={handleSubmit} className="card p-4">
+        {error && (
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        )}
         <div className="mb-3">
           <input
             type="text"

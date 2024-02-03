@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
-const Navbar = ({ isAuthenticated, username, onLogout }) => {
+const Navbar = () => {
+  const { isAuthenticated, user, logout } = useAuth();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -42,31 +45,29 @@ const Navbar = ({ isAuthenticated, username, onLogout }) => {
             </Link>
           </div>
         </div>
-        <div className="ml-auto">
-          {/* Use ml-auto for alignment */}
+        <div className="ml-auto d-flex align-items-center">
           {isAuthenticated ? (
-            <div className="form-inline my-2 my-lg-0">
-              <div className="p-2 bg-dark text-white">
-                Logged in as {username}
+            <>
+              <div
+                className="p-2 m-2 text-white"
+                style={{ backgroundColor: "purple" }}
+              >
+                Logged in as {user.username}
               </div>
               <button
-                className="btn btn-info my-2 my-sm-0 ml-2"
-                onClick={onLogout}
+                className="btn btn-info n-2 my-2 my-sm-0 ml-3" // Increased margin-left for spacing
+                onClick={logout}
               >
                 Logout
               </button>
-            </div>
+            </>
           ) : (
             <>
               <Link to="/login">
-                <button className="btn btn-success my-2 my-sm-0 mr-6">
-                  Login
-                </button>
-              </Link>{" "}
+                <button className="btn btn-success m-2 my-sm-0">Login</button>
+              </Link>
               <Link to="/register">
-                <button className="btn btn-primary my-2 my-sm-0 ml-2">
-                  Register
-                </button>
+                <button className="btn btn-primary my-sm-0">Register</button>
               </Link>
             </>
           )}
