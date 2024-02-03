@@ -1,9 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout(); // Call logout from context
+    navigate("/"); // Then navigate
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,6 +40,15 @@ const Navbar = () => {
             <Link className="nav-item nav-link" to="/">
               Home
             </Link>
+            {isAuthenticated ? (
+              <>
+                <Link className="nav-item nav-link" to="/dashboard">
+                  Dashboard
+                </Link>
+              </>
+            ) : (
+              ""
+            )}
             <Link className="nav-item nav-link" to="/doctors">
               Doctors
             </Link>
@@ -56,7 +71,7 @@ const Navbar = () => {
               </div>
               <button
                 className="btn btn-info n-2 my-2 my-sm-0 ml-3" // Increased margin-left for spacing
-                onClick={logout}
+                onClick={handleLogout}
               >
                 Logout
               </button>

@@ -20,9 +20,10 @@ export const AuthProvider = ({ children }) => {
     navigate("/dashboard");
   };
 
-  const logout = () => {
+  const logout = (navigate) => {
     localStorage.removeItem("user"); // Clear user data from localStorage
     setUser(null);
+    // navigate("/");
   };
 
   return (
