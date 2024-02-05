@@ -8,7 +8,10 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Doctors from "./pages/Doctors";
 import Appointments from "./pages/Appointments";
-import DoctorAvailability from "./components/DoctorAvailability";
+import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
 function App() {
   return (
@@ -23,7 +26,10 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/doctors" element={<Doctors />} />
             <Route path="/appointments" element={<Appointments />} />
-            <Route path="/doctor/availability" component={DoctorAvailability} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
           </Routes>
         </div>
         <Footer />

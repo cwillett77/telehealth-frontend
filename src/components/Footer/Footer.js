@@ -8,16 +8,16 @@ const Footer = () => {
         <div className="d-flex justify-content-center">
           {" "}
           {/* Flexbox container */}
-          <Link className="mx-2" to="/about">
+          <Link className="mx-2" to="/about-us">
             About Us
           </Link>
-          <Link className="mx-2" to="/contact">
+          <Link className="mx-2" to="/contact-us">
             Contact Us
           </Link>
-          <Link className="mx-2" to="/privacy">
+          <Link className="mx-2" to="/privacy-policy">
             Privacy Policy
           </Link>
-          <Link className="mx-2" to="/terms">
+          <Link className="mx-2" to="/terms-of-service">
             Terms of Service
           </Link>
         </div>
