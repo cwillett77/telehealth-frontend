@@ -32,38 +32,44 @@ function LoginForm() {
 
   return (
     <div className="container mt-5">
-      <form onSubmit={handleSubmit} className="card p-4">
-        {error && (
-          <div className="alert alert-danger" role="alert">
-            {error}
-          </div>
-        )}
-        <div className="mb-3">
-          <input
-            type="text"
-            name="username"
-            value={credentials.username}
-            onChange={handleChange}
-            placeholder="Username"
-            className="form-control"
-            required
-          />
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-4">&nbsp;</div>
+        <div class="col-3">
+          <form onSubmit={handleSubmit} className="card p-4">
+            {error && (
+              <div className="alert alert-danger" role="alert">
+                {error}
+              </div>
+            )}
+            <div className="mb-3">
+              <input
+                type="text"
+                name="username"
+                value={credentials.username}
+                onChange={handleChange}
+                placeholder="Username"
+                className="form-control"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="password"
+                name="password"
+                value={credentials.password}
+                onChange={handleChange}
+                placeholder="Password"
+                className="form-control"
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary w-100">
+              Login
+            </button>
+          </form>
         </div>
-        <div className="mb-3">
-          <input
-            type="password"
-            name="password"
-            value={credentials.password}
-            onChange={handleChange}
-            placeholder="Password"
-            className="form-control"
-            required
-          />
-        </div>
-        <button type="submit" className="btn btn-primary w-100">
-          Login
-        </button>
-      </form>
+        <div class="col col-lg-4">&nbsp;</div>
+      </div>
     </div>
   );
 }

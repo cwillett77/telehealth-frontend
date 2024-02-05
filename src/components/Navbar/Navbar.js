@@ -41,19 +41,14 @@ const Navbar = () => {
               Home
             </Link>
             {isAuthenticated ? (
-              <>
-                <Link className="nav-item nav-link" to="/dashboard">
-                  Dashboard
-                </Link>
-              </>
+              <Link className="nav-item nav-link" to="/dashboard">
+                Dashboard
+              </Link>
             ) : (
               ""
             )}
             <Link className="nav-item nav-link" to="/doctors">
               Doctors
-            </Link>
-            <Link className="nav-item nav-link" to="/patients">
-              Patients
             </Link>
             <Link className="nav-item nav-link" to="/appointments">
               Appointments
