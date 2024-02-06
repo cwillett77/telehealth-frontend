@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+const apiHostname = process.env.REACT_APP_API_HOSTNAME;
+const apiPort = process.env.REACT_APP_API_PORT;
+const baseURL = `http://${apiHostname}:${apiPort}/api`;
 
 function DoctorsList() {
   const [doctors, setDoctors] = useState([]);
@@ -7,7 +10,7 @@ function DoctorsList() {
   useEffect(() => {
     // Fetch the list of doctors from the backend
     axios
-      .get("http://localhost:8000/api/accounts/doctors/")
+      .get(`${baseURL}/api/accounts/doctors/`)
       .then((response) => {
         console.log(response.data);
         setDoctors(response.data);
@@ -24,7 +27,7 @@ function DoctorsList() {
         {doctors.map((doctor) => (
           <li key={doctor.id}>
             <a href={`/doctor-details/${doctor.id}`}>
-              {doctor.first_name} {doctor.last_name}
+              Dr. {doctor.first_name} {doctor.last_name}
             </a>
           </li>
         ))}

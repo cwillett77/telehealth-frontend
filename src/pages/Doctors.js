@@ -5,7 +5,9 @@ const Doctors = () => {
   return (
     <div className="container">
       <main>
-        <DoctorsList />
+        <section className="my-5">
+          <DoctorsList />
+        </section>
       </main>
     </div>
   );
