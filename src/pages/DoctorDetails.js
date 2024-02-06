@@ -19,6 +19,7 @@ const DoctorDetails = () => {
     <div className="container">
       <main>
         <section className="my-5">
+          <h1>Doctor Details</h1>
           <Link to="/">Back to Doctors List</Link>
           {doctor ? (
             <div className="m-6">
