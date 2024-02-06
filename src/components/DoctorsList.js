@@ -10,7 +10,7 @@ function DoctorsList() {
   useEffect(() => {
     // Fetch the list of doctors from the backend
     axios
-      .get(`${baseURL}/api/accounts/doctors/`)
+      .get(`${baseURL}/accounts/doctors/`)
       .then((response) => {
         console.log(response.data);
         setDoctors(response.data);
