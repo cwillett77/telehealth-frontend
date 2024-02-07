@@ -19,7 +19,6 @@ const Dashboard = () => {
 
           {user && user.user_type === "patient" && (
             <>
-              <h2>Patient Dashboard</h2>
               {/* Patient-specific content or components */}
               <p>
                 Here you can view your upcoming appointments, medical records,

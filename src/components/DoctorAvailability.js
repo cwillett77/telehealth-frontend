@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+import { formatDateTime } from "../utils/datetimeUtils";
 const apiHostname = process.env.REACT_APP_API_HOSTNAME;
 const apiPort = process.env.REACT_APP_API_PORT;
 const baseURL = `http://${apiHostname}:${apiPort}/api`;
@@ -85,21 +86,6 @@ const DoctorAvailability = () => {
     } catch (error) {
       console.error("Couldn't add availability", error);
     }
-  };
-
-  const formatDateTime = (dateTimeStr) => {
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      timeZoneName: "short",
-    };
-    const dateTime = new Date(dateTimeStr);
-    return dateTime.toLocaleDateString("en-US", options);
   };
 
   return (
