@@ -32,6 +32,16 @@ const DoctorDetails = () => {
       });
   }, [id]);
 
+  // Function to replace newline characters with <br> tags
+  const renderWithLineBreaks = (text) => {
+    return text.split("\n").map((line, index) => (
+      <React.Fragment key={index}>
+        {line}
+        <br />
+      </React.Fragment>
+    ));
+  };
+
   return (
     <div className="container">
       <main>
@@ -45,7 +55,9 @@ const DoctorDetails = () => {
               </h2>
               <p>Email: {doctor.email}</p>
               <p>Specialization: {doctor.specialization}</p>
-              <p>Credentials: {doctor.credentials}</p>
+              <p className="credentials">
+                Credentials: {renderWithLineBreaks(doctor.credentials)}
+              </p>
             </div>
           ) : (
             <p>Loading...</p>
