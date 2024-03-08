@@ -75,10 +75,13 @@ const DoctorAvailability = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      // Convert local datetimes to ISO string format
+      const startDateTime = new Date(startTime).toISOString();
+      const endDateTime = new Date(endTime).toISOString();
       const response = await axios.post(`${baseURL}/booking/availabilities/`, {
         doctor: userId,
-        start_time: startTime,
-        end_time: endTime,
+        start_time: startDateTime,
+        end_time: endDateTime,
       });
       setAvailabilities([...availabilities, response.data]);
       setStartTime("");

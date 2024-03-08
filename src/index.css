@@ -47,11 +47,15 @@ li {
   list-style-position: inside; /* Positions bullet points inside the list item */
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .feature-text {
   margin-left: 2;
   padding-left: 2;
 }
 
-.credentials {
-  white-space: pre-wrap; /* or pre-line */
+.credentials-box {
+  margin: 20px 0;
 }

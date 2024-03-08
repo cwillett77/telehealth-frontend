@@ -49,14 +49,20 @@ const DoctorDetails = () => {
           <h1>Doctor Details</h1>
           <Link to="/">Back to Doctors List</Link>
           {doctor ? (
-            <div className="m-6">
+            <div className="m-6 credentials-box">
               <h2>
                 Dr. {doctor.first_name} {doctor.last_name}
               </h2>
-              <p>Email: {doctor.email}</p>
-              <p>Specialization: {doctor.specialization}</p>
-              <p className="credentials">
-                Credentials: {renderWithLineBreaks(doctor.credentials)}
+              <p>
+                <span className="bold">Email:</span> {doctor.email}
+              </p>
+              <p>
+                <b>Specialization:</b> {doctor.specialization}
+              </p>
+              <p>
+                <b>Credentials:</b>
+                <br />
+                {renderWithLineBreaks(doctor.credentials)}
               </p>
             </div>
           ) : (
