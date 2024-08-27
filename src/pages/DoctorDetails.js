@@ -47,23 +47,34 @@ const DoctorDetails = () => {
       <main>
         <section className="my-5">
           <h1>Doctor Details</h1>
-          <Link to="/">Back to Doctors List</Link>
+          <Link to="/doctors">Back to Doctors List</Link>
           {doctor ? (
-            <div className="m-6 credentials-box">
-              <h2>
-                Dr. {doctor.first_name} {doctor.last_name}
-              </h2>
-              <p>
-                <span className="bold">Email:</span> {doctor.email}
-              </p>
-              <p>
-                <b>Specialization:</b> {doctor.specialization}
-              </p>
-              <p>
-                <b>Credentials:</b>
-                <br />
-                {renderWithLineBreaks(doctor.credentials)}
-              </p>
+            <div className="row mt-5">
+              <div className="col-lg-5">
+                <img
+                  src={`/img/${doctor.first_name}-${doctor.last_name}.jpg`}
+                  className="img-fluid rounded shadow-sm"
+                  style={{ border: "2px #f98f7c solid", marginBottom: "20px" }}
+                  alt="stockking"
+                  width="480"
+                />
+              </div>
+              <div className="col-lg-5">
+                <h2>
+                  Dr. {doctor.first_name} {doctor.last_name}
+                </h2>
+                <p>
+                  <span className="bold">Email:</span> {doctor.email}
+                </p>
+                <p>
+                  <b>Specialization:</b> {doctor.specialization}
+                </p>
+                <p>
+                  <b>Credentials:</b>
+                  <br />
+                  {renderWithLineBreaks(doctor.credentials)}
+                </p>
+              </div>
             </div>
           ) : (
             <p>Loading...</p>
