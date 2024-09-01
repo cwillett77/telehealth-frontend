@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
-import { formatDateTime } from "../utils/datetimeUtils";
 const apiHostname = process.env.REACT_APP_API_HOSTNAME;
 const apiPort = process.env.REACT_APP_API_PORT;
 const baseURL = `http://${apiHostname}:${apiPort}/api`;
+
+const formatDateTimeToLocal = (utcDateTime) => {
+  const localDate = new Date(utcDateTime);
+  return localDate.toLocaleString(); // This will convert to local time
+};
 
 const DoctorAvailability = () => {
   const [availabilities, setAvailabilities] = useState([]);
@@ -16,20 +20,20 @@ const DoctorAvailability = () => {
   const { user } = useAuth();
   const userId = user.id; // Retrieve the doctor's ID
 
-  useEffect(() => {
-    const fetchAvailabilities = async () => {
-      try {
-        const response = await axios.get(
-          `${baseURL}/booking/availabilities/?doctor_id=${userId}`
-        );
-        setAvailabilities(response.data);
-      } catch (error) {
-        console.error("Couldn't fetch availabilities", error);
-      }
-    };
-
-    fetchAvailabilities();
+  const fetchAvailabilities = useCallback(async () => {
+    try {
+      const response = await axios.get(
+        `${baseURL}/booking/availabilities/?doctor_id=${userId}`
+      );
+      setAvailabilities(response.data);
+    } catch (error) {
+      console.error("Couldn't fetch availabilities", error);
+    }
   }, [userId]);
+
+  useEffect(() => {
+    fetchAvailabilities();
+  }, [fetchAvailabilities]);
 
   const handleEditClick = (availability) => {
     setEditedAvailability(availability);
@@ -75,15 +79,15 @@ const DoctorAvailability = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Convert local datetimes to ISO string format
+      // Convert local datetimes to ISO string format (UTC)
       const startDateTime = new Date(startTime).toISOString();
       const endDateTime = new Date(endTime).toISOString();
-      const response = await axios.post(`${baseURL}/booking/availabilities/`, {
+      await axios.post(`${baseURL}/booking/availabilities/`, {
         doctor: userId,
         start_time: startDateTime,
         end_time: endDateTime,
       });
-      setAvailabilities([...availabilities, response.data]);
+      fetchAvailabilities(); // Re-fetch the data to update the state
       setStartTime("");
       setEndTime("");
     } catch (error) {
@@ -157,8 +161,8 @@ const DoctorAvailability = () => {
               </>
             ) : (
               <>
-                {formatDateTime(availability.start_time)} to{" "}
-                {formatDateTime(availability.end_time)}
+                {formatDateTimeToLocal(availability.start_time)} to{" "}
+                {formatDateTimeToLocal(availability.end_time)}
                 <button
                   className="btn btn-primary btn-sm ms-2"
                   onClick={() => handleEditClick(availability)}
