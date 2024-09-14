@@ -54,6 +54,7 @@ const DoctorAvailability = () => {
         .then(() => {
           setIsEditing(false);
           setEditedAvailability(null);
+          fetchAvailabilities();
         })
         .catch((error) => {
           console.error("Couldn't update availability", error);

@@ -34,7 +34,7 @@ const DoctorDetails = () => {
 
   // Function to replace newline characters with <br> tags
   const renderWithLineBreaks = (text) => {
-    return text.split("\n").map((line, index) => (
+    return text.split("<br>").map((line, index) => (
       <React.Fragment key={index}>
         {line}
         <br />
